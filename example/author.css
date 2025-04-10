@@ -1,0 +1,108 @@
+/* ****
+表の罫線とセルの揃え
+**** */
+
+table thead th,
+table thead td {
+    border-top: 1px solid;
+    border-bottom: 2px double;
+}
+table tbody tr:last-child th,
+table tbody tr:last-child td {
+    border-bottom: 1px solid;
+}
+
+/* ***
+マージンボックスの表
+*** */
+
+#page-margin-table {
+    margin-block-start: 1em;
+}
+
+#page-margin-table table {
+    inline-size: 95%;
+    table-layout: fixed;
+}
+#page-margin-table thead {
+    display: none;
+}
+#page-margin-table td {
+    border: thin solid gray;
+}
+
+/* ***
+配置
+*** */
+
+.grid-2x2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+}
+.grid-2x2 > section:has(> h3) {
+    break-before: avoid !important;
+}
+.grid-2x2 h3 {
+    counter-increment: subsection 0 !important;
+}
+.grid-2x2 h3::before {
+    content: none !important;
+}
+.grid-2x2 > section {
+    border: thick double darkorange;
+    border-radius: .5em;
+    position: relative;
+    margin-block-start: 1em;
+}
+.grid-2x2 > section > h3 {
+    position: absolute;
+    top: -1.5em;
+    left: 1em;
+    background-color: white;
+    padding-inline: .5em;
+}
+
+/* ***
+矢印
+*** */
+
+:root {
+    --logic-arrow-size: 1.5em;
+}
+.arrow-l2r,
+.arrow-t2b {
+    position: relative;
+}
+.arrow-l2r {
+    margin-inline-end: var(--logic-arrow-size);
+}
+.arrow-t2b {
+    margin-block-end: var(--logic-arrow-size);
+}
+.arrow-l2r::after {
+    display: inline-block;
+    content: "";
+    background-size: contain;
+    inline-size: var(--logic-arrow-size);
+    block-size: var(--logic-arrow-size);
+    position: absolute;
+    background-image: url("figure/arrow-right.svg");
+    top: calc(50% - var(--logic-arrow-size) / 2);
+    right: calc(-1 * var(--logic-arrow-size) - .25em);
+}
+.arrow-t2b::after {
+    display: inline-block;
+    content: "";
+    background-size: contain;
+    inline-size: var(--logic-arrow-size);
+    block-size: var(--logic-arrow-size);
+    position: absolute;
+    background-image: url("figure/arrow-down.svg");
+    left: calc(50% - var(--logic-arrow-size) / 2);
+    bottom: calc(-1 * var(--logic-arrow-size));
+}
+
+/* ***
+End of script
+*** */

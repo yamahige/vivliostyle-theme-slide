@@ -1,0 +1,478 @@
+:root {
+    word-break: break-word;
+    counter-reset: section 0 subsection 0;
+    /* フォント */
+    --yh-theme--serif-font-family: "Times New Roman", "游明朝体", "Yu Mincho", YuMincho, serif;
+    --yh-theme--serif-font-family-en: "Times New Roman", serif;
+    --yh-theme--sans-serif-font-family: "Arial", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "游ゴシック体", YuGothic, "游ゴシック", "Yu Gothic", "メイリオ", "meiryo", sans-serif;
+    --yh-theme--sans-serif-font-family-en: "Arial", sans-serif;
+    --yh-theme--heading-font-family: "Times New Roman", var(--yh-theme--sans-serif-font-family);
+    --yh-theme--code-font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, monospace;
+    font-family: var(--yh-theme--sans-serif-font-family);
+    font-size: 1em;
+    hyphens: auto;
+    line-break: strict;
+    --yh-theme--line-height: 1.5;
+    line-height: var(--yh-theme--line-height);
+    letter-spacing: 0;
+    overflow-wrap: anywhere;
+    tab-size: 4;
+    /*
+    text-align: justify;
+    */
+    text-spacing: auto;
+    text-spacing-trim: trim-start;
+    text-spacing-trim: trim-both;
+    text-underline-offset: auto;
+    text-underline-position: left;
+    word-break: auto-phrase;
+    word-spacing: normal;
+    orphans: 1;
+    widows: 1;
+    --yh-theme--spacing-block: calc(var(--yh-theme--line-height) * 1rem);
+    margin-block: 0;
+    --yh-theme--slide-title-font-size: 1.2rem;
+}
+
+@page {
+    size: 216mm 162mm;
+    /*
+    a5 landscape 210mm 148mm
+    4:3 216mm 162mm
+    16:9 256mm 144mm
+    */
+    margin-block-start: 2.5rem;
+    margin-block-end: 2.5rem;
+    margin-inline-start: 3rem;
+    margin-inline-end: 3rem;
+
+    @top-left {
+        content: string(string-title);
+        max-width: 50%;
+        font-size: .8rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    @top-right {
+        content: string(chapter-number, first) " " string(chapter, first);
+        max-width: 50%;
+        margin-inline-start: 1em;
+        font-size: .8rem;
+        word-break: normal;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        display: block;
+        min-width: 0;
+    }
+    @bottom-left {
+        content: string(string-date);
+        max-width: 15%;
+    }
+    @bottom-center {
+        margin-inline-start: 1em;
+        content: string(string-conference);
+        max-width: 70%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    @bottom-right {
+        content: counter(page) " / " counter(pages);
+        max-width: 15%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+
+@page :first {
+    @top-left {
+        content: none;
+    }
+    @top-right {
+        content: none;
+    }
+    @bottom-left {
+        content: none;
+    }
+    @bottom-center {
+    }
+    @bottom-right {
+        content: none;
+    }
+}
+
+/* ****
+表紙
+**** */
+
+h1 {
+    margin-block-start: 2rem;
+    margin-block-end: 1rem;
+    text-align: center;
+    word-break: auto-phrase;
+    text-wrap: balance;
+    font-size: 2rem;
+    font-family: var(--yh-theme--heading-font-family);
+    font-weight: bold;
+    string-set: string-title content();
+}
+
+.cover {
+    display: none; /* 「表紙」など、`.cover`セクションを示す見出しを表示しない */
+}
+
+/* 著者 */
+
+.author {
+    display: none;
+}
+
+:has(> .author) {
+    margin-block-start: 1em;
+    margin-block-end: 0;
+    text-align: center;
+    font-size: 1rem;
+}
+:has(> .author) > p {
+    display: inline;
+    margin-block: 0;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    font-family: var(--yh-theme--sans-serif-font-family);
+}
+:has(> .author) > p:not(:first-of-type) {
+    margin-inline-start: .5rem;
+}
+
+:has(> .author) > p:first-of-type {
+    string-set: string-author content();
+}
+
+/* 研究会名 */
+
+:has(> .conference),
+.conference {
+    display: none; /* フッターにしか表示しない */
+}
+:has(> .conference) > p:first-of-type {
+    string-set: string-conference content();
+}
+
+/* ****
+日付、バージョン
+**** */
+
+:has(> .version) {
+    text-align: center;
+}
+
+:has(> .version) * {
+    display: inline-block;
+}
+
+.version-list,
+.version,
+.version-name,
+.date {
+    display: none;
+}
+
+:has(> .version):first-of-type > :has(> .date) > p {
+    string-set: string-date content();
+}
+
+/* ****
+スライド
+**** */
+
+.break-before-page,
+section:has(> .break-before-page),
+section:has(> h2:not(.cover)),
+section:has(> h3:not(.conference, .author, .version-list, .version, .date)) {
+    break-before: page;
+    clear: both; /* スライド区切りをfloatの区切りに */
+}
+
+.break-before-auto,
+section:has(> h2.break-before-auto, > h3.break-before-auto) {
+    break-before: auto;
+}
+
+/* ****
+見出し
+**** */
+
+h2, h3, h4, h5, h6 {
+    word-break: auto-phrase;
+    font-family: var(--yh-theme--sans-serif-font-family);
+}
+h2,
+h3 {
+    margin-block-start: 1rem;
+    margin-block-end: calc(var(--yh-theme--spacing-block) * 0.3);
+    font-size: var(--yh-theme--slide-title-font-size);
+    text-align: start;
+}
+h2 {
+    counter-reset: subsection 0;
+    font-weight: bold;
+}
+h2:not(.title, .reference) {
+    counter-increment: section;
+    string-set: chapter content(), chapter-number content(before);
+}
+h2:not(.title, .reference)::before {
+    content: counter(section) ".";
+    margin-inline-end: .5rem;
+}
+h3:is(.author, .date, .version-list, .version, .conference) {
+    display: none;
+}
+h3:not(.author, .date, .version-list, .version, .conference) {
+    counter-increment: subsection;
+}
+h3:not(.author, .date, .version-list, .version, .conference)::before {
+    content: counter(section) "." counter(subsection) " ";
+    margin-inline-end: .5rem;
+}
+h4 {
+    margin-block-start: .5rem;
+    margin-block-end: 0;
+    font-size: 1rem;
+}
+h5, h6 {
+    margin-block-start: .5rem;
+    margin-block-end: 0;
+    font-size: 1rem;
+}
+
+.no-number {
+    counter-reset: none;
+}
+h2.no-number::before {
+    content: none;
+}
+
+/* ***
+リスト
+*** */
+
+ul,
+ol {
+    padding-inline-start: 1em;
+}
+
+ul > li,
+ol > li {
+}
+
+ul > li::marker,
+ol > li::marker {
+}
+
+/* ***
+図、表
+*** */
+
+figure {
+    break-inside: avoid-page;
+    margin-block: 0;
+    margin-inline: 0;
+}
+p:has(> img.right),
+figure.right {
+    float: inline-end;
+    margin-inline-start: .5rem;
+}
+figure.left {
+    float: left;
+}
+figure > * {
+    max-inline-size: 100dvw;
+}
+
+/* ****
+画像
+**** */
+
+img {
+    max-inline-size: 100%;
+    max-block-size: calc(90vh - var(--yh-theme--slide-title-font-size));
+}
+
+p:has(> img) {
+    margin-block: 1em;
+    text-align: center;
+}
+p:has(> img.float-inline-end) {
+    float: inline-end;
+}
+p:has(> img.float-inline-start) {
+    float: inline-start;
+}
+
+/* ****
+表
+**** */
+
+table {
+    border-collapse: collapse;
+    margin-inline-start: auto; /* 中央揃え */
+    margin-inline-end: auto; /* 中央揃え */
+}
+th,
+td {
+    padding-inline: .2rem;
+    padding-block: .2rem;
+    border: none;
+    font-family: var(--yh-theme--sans-serif-font-family);
+    font-size: 85%;
+    white-space: pre-line;
+    vertical-align: top;
+}
+
+/* 表の罫線とセルの揃えのCSSは別ファイル */
+
+/* ****
+段落
+**** */
+
+p {
+    margin-block-start: 1rem;
+    margin-block-end: 0;
+    line-height: var(--yh-theme--line-height);
+}
+h2 + p,
+h3 + p,
+h4 + p {
+    margin-block-start: 0;
+}
+
+/* ****
+脚注
+**** */
+
+.fn {
+    counter-increment: footnote;
+    display: inline-block;
+    float: footnote;
+    margin-inline-start: 1em;
+    font-size: .8em;
+}
+::footnote-marker {
+    content: "*" counter(footnote);
+    color: rgb(0,0,238);
+    margin-inline-start: -2em;
+    margin-inline-end: 1em;
+}
+::footnote-call {
+    content: "*" counter(footnote);
+    font-size: .7em;
+    color: rgb(0,0,238);
+    position: relative;
+    inset-block-start: -0.5rem;
+}
+.fn + .fn::footnote-call {
+    margin-inline-start: .25em;
+}
+
+/* ****
+文末注
+**** */
+
+.footnote-ref {
+    margin-inline-start: .2em;
+    vertical-align: super;
+    text-decoration: none;
+}
+.footnote-ref::before {
+    content: "[";
+}
+.footnote-ref::after {
+    content: "]";
+}
+.footnote-ref > sup {
+    vertical-align: baseline;
+}
+
+.footnotes {
+    break-before: page;
+    font-size: .8em;
+    string-set: chapter "", chapter-number "";
+}
+.footnotes > ol > li::marker {
+    content: "[" counter(list-item) "]";
+    margin-inline-end: 1em;
+}
+.footnotes::before {
+    content: "参考文献";
+    display: block;
+    margin-block-start: 1rem;
+    margin-block-end: calc(var(--yh-theme--spacing-block) * 0.3);
+    font-size: var(--yh-theme--slide-title-font-size);
+    font-family: var(--yh-theme--sans-serif-font-family);
+    text-align: start;
+}
+.footnotes > hr {
+    display: none;
+}
+.footnotes > ol {
+    padding-inline-start: 1em;
+}
+
+/* ****
+コード
+**** */
+
+code {
+    padding: 0.125em;
+    font-size: .8em;
+}
+code,
+pre {
+    font-family: var(--yh-theme--code-font-family);
+    background-color: #f2f1f1;
+}
+pre {
+    font-size: 1em;
+}
+
+/* ****
+URL
+**** */
+
+a.url {
+    font-family: var(--yh-theme--code-font-family);
+}
+
+/* ****
+強調
+**** */
+
+em {
+    font-style: normal;
+    font-weight: bold;
+}
+
+/* ****
+引用
+**** */
+
+blockquote {
+    margin-block: calc(var(--yh-theme--spacing-block) * 0.5);
+    margin-inline-start: 0;
+    padding-inline-start: 1em;
+    border-inline-start: thin solid gray;
+    text-indent: 0;
+}
+blockquote > p {
+    text-indent: 0;
+    font-size: 90%;
+}
+
+/* ***
+End of script
+*** */
