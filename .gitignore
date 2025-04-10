@@ -1,0 +1,9 @@
+*.html
+!example/slide.html
+publication.json
+*.pdf
+!example/slide.pdf
+slide.epub
+slide/
+.vivliostyle
+.vs-*
