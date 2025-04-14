@@ -385,7 +385,9 @@ Markdownエディターでのアウトライン表示にこだわらなければ
 [^word]: [脚注と文末脚注を挿入する Microsoftサポート](https://support.microsoft.com/ja-jp/office/%E8%84%9A%E6%B3%A8%E3%81%A8%E6%96%87%E6%9C%AB%E8%84%9A%E6%B3%A8%E3%82%92%E6%8C%BF%E5%85%A5%E3%81%99%E3%82%8B-61f3fb1a-4717-414c-9a8f-015a5f3ff4cb)
 [^CSS]: CSS Generated Content for Paged Media Module 2. Footnotes [https://www.w3.org/TR/css-gcpm-3/#footnotes](https://www.w3.org/TR/css-gcpm-3/#footnotes)
 
-## 文字サイズの調整
+## スライドに詰め込む
+
+(was:文字サイズの調整)
 
 「1行だけスライドから溢れてしまったけど、テキストを修正する余裕がない」ことってありますよね。
 
@@ -412,6 +414,18 @@ Markdownエディターでのアウトライン表示にこだわらなければ
 
 > このスライドの文字を小さくしたい。
 </div>
+
+### その他の方法
+
+他の方法で調整できるかもしれません。前の例の`font-size: 70%;`部分には、次のようなパターンが考えら得ます。ただし、読みにくくなって不評を買うかもしれません。
+
+1. `font-size: 90%;`などで文字のサイズを少し小さくしてみます
+1. `line-height: 1;`などで行の幅を指定します。`1`などの数字にフォントサイズを掛けたものなります。`1.5`や`1.8`になってることが多いので、少し狭くしてみます
+1. `word-break: break-all;`で禁則なども無視して改行できるようにします。`word-break: auto-phrase;`は行数が増えがちです
+1. `margin-inline-start: -2em;`、`margin-inline-end: -2em;`などで文字が進む方向の余白（マージン）の大きさを負にすると、行頭（`-start`）や行末（`-end`）で使える幅が広がって長い行が収まります
+1. `margin-block-start: -1em;`や`margin-block-end: -1em;`などで行が進む方向の余白の大きさを負にすると、収まる行数が増えます…が、前後の行の文字と重なるかもしれません
+1. `letter-spacing: -1px;`などで字間のスペースに負の値を指定します
+1. `position: relative; left: -1em; top: -1em;`などとすると、サイズではなく位置（position）を上下左右にズラせます。この例だと左（left）に1文字分、上（top）に1文字分ズレ（relative）ます
 
 ## スライドとしての基本的なスタイル設定とプレゼン操作
 
