@@ -1,3 +1,9 @@
+:root {
+    /*
+    writing-mode: vertical-rl;
+    */
+}
+
 /* ****
 表の罫線とセルの揃え
 **** */
@@ -57,8 +63,8 @@ table tbody tr:last-child td {
 }
 .grid-2x2 > section > h3 {
     position: absolute;
-    top: -1.5em;
-    left: 1em;
+    inset-block-start: -1.5em;
+    inset-inline-start: 1em;
     background-color: white;
     padding-inline: .5em;
 }
@@ -88,8 +94,8 @@ table tbody tr:last-child td {
     block-size: var(--logic-arrow-size);
     position: absolute;
     background-image: url("figure/arrow-right.svg");
-    top: calc(50% - var(--logic-arrow-size) / 2);
-    right: calc(-1 * var(--logic-arrow-size) - .25em);
+    inset-block-start: calc(50% - var(--logic-arrow-size) / 2);
+    inset-inline-end: calc(-1 * var(--logic-arrow-size) - .25em);
 }
 .arrow-t2b::after {
     display: inline-block;
@@ -99,8 +105,8 @@ table tbody tr:last-child td {
     block-size: var(--logic-arrow-size);
     position: absolute;
     background-image: url("figure/arrow-down.svg");
-    left: calc(50% - var(--logic-arrow-size) / 2);
-    bottom: calc(-1 * var(--logic-arrow-size));
+    inset-inline-end: calc(50% - var(--logic-arrow-size) / 2);
+    inset-block-end: calc(-1 * var(--logic-arrow-size));
 }
 
 /* ***
