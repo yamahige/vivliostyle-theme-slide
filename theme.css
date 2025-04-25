@@ -463,8 +463,12 @@ a.url {
 **** */
 
 em {
+}
+
+:lang(ja) em {
     font-style: normal;
-    font-weight: bold;
+    text-decoration-line: underline;
+    text-underline-offset: .2em;
 }
 
 /* ****
