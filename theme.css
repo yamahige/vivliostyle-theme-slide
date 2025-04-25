@@ -465,6 +465,8 @@ a.url {
 em {
 }
 
+em:lang(ja),
+em :lang(ja),
 :lang(ja) em {
     font-style: normal;
     text-decoration-line: underline;
