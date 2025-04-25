@@ -59,21 +59,24 @@ When preparing slides for conference presentations, using HTML and CSS offers se
 <!-- HTML+CSSでは、テキストが図を回り込むのが普通で、特に工夫はいりません。 -->
 In HTML and CSS, text naturally wraps around images without additional effort.
 
+<!--
 - なお、改行の位置で「あれ？」と思ったみなさん、自動的な改行の位置を調整できるのです。[別のスライド](#word-break)で説明します。  
-If the automatic line breaks seem off, they can be adjusted for better readability. For example, using word-break: auto-phrase; allows for more natural line breaks in Japanese text.
+-->
+- If the automatic line breaks seem off, they can be adjusted for better readability. For example, using [`word-break: auto-phrase;`](#word-break) allows for more natural line breaks in Japanese text.
+- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
 <!-- 
 - 色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず
 - 色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず
 - 色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず
 -->
-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
-## 改行位置の調整{#word-break}  
-Adjusting Line Breaks
+## <!-- 改行位置の調整 -->Adjusting Line Breaks{#word-break}
 
-CSSでは自動的に折り返される改行の位置を、`word-break`プロパティ[^word-break]を使って調整できます。
-CSS allows control over automatic line breaks using the word-break property:
+
+<!-- CSSでは自動的に折り返される改行の位置を、`word-break`プロパティ[^word-break]を使って調整できます。 -->
+CSS allows control over automatic line breaks using the `word-break` property[^word-break]:
 
 [^word-break]: word-break  https://developer.mozilla.org/ja/docs/Web/CSS/word-break
 
@@ -81,11 +84,16 @@ CSS allows control over automatic line breaks using the word-break property:
 
 ![](figure/figure.svg){style="float: inline-end; inline-size: 17em;"}
 
-`word-break: normal;`という設定では、既定の規則で改行します:  
-follows default rules.
+<!-- `word-break: normal;`という設定では、既定の規則で改行します: -->
+`word-break: normal;` follows default rules:
 
+<!--
 -	HTML+CSSでは、テキストが図を回り込むのが普通です。
 -	色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。
+-->
+
+- In HTML and CSS, text naturally wraps around images **without** additional effort.
+- <span lang="ja">HTML+CSSでは簡単に、テキストが図を回り込むように**設定できます**。</span>
 
 </div>
 
@@ -93,22 +101,37 @@ follows default rules.
 
 ![](figure/figure.svg){style="clear: both; float: inline-end; inline-size: 17em;"}
 
-`word-break: auto-phrase;`という設定では、日本語として、より自然な位置で改行します。これは好みが分かれるでしょう:  
-breaks lines at more natural points in Japanese. 
+<!--
+`word-break: auto-phrase;`という設定では、日本語として、より自然な位置で改行します。これは好みが分かれるでしょう:
+-->
 
--	HTML+CSSでは、テキストが図を回り込むのが普通です。
--	色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。
+`word-break: auto-phrase;` breaks lines at more natural points according to the language.
+
+- In HTML and CSS, text naturally wraps around images **without** additional effort.
+- <span lang="ja">HTML+CSSでは簡単に、テキストが図を回り込むように**設定できます**。</span>
+
+<!--
+- HTML+CSSでは、テキストが図を回り込むのが普通です。
+- 色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。
+-->
 
 </div>
 
-なお、このスライド全体には、試しに`word-break: auto-phrase;`と設定しています。  
-This slide uses word-break: auto-phrase; for demonstration.
+<!--
+なお、このスライド全体には、試しに`word-break: auto-phrase;`と設定しています。
+-->
 
-## 文字数が均等になるように改行してくれる  
-Balanced Line Lengths
+This slide uses `word-break: auto-phrase;` for demonstration.
 
+## <!-- 文字数が均等になるように改行してくれる -->Balanced Line Lengths
+
+<!--
 - このスライドのタイトルは1行に収まらないくらい長いので自動的に改行しています。自然なところで改行してるように見えますし、ほぼ同じ長さの2行になっています。
 - ただし、Markdownを見るとタイトルには改行が入っていません。
+-->
+
+- The title of this slide is so long that it doesn't fit on one line, so it automatically breaks lines. It looks like it **breaks lines where natural**, and it is **two lines of almost the same length**.
+- However, if you look at the Markdown, you will see that the title does not contain line breaks.
 
 <div style="display: flex; flex-direction: column; column-gap: 1em; inline-size: 50%;">
 
@@ -123,16 +146,22 @@ Balanced Line Lengths
 
 </div>
 
-CSSで次の設定を使うと、これを実現できます。  
-Long titles that don’t fit on one line can be automatically broken into two balanced lines using:
+<!--
+CSSで次の設定を使うと、これを実現できます。
+-->
 
+You can achieve this by using the following setting in CSS.
+
+<!--
 - `word-break: auto-phrase;`で、ことばとして自然なところで改行します。
-- `text-wrap: balance;`[^text-wrap]で、行の文字数が均等になるように改行します。  
-(Note: text-wrap: balance; is a proposed CSS property and may not be widely supported yet.)
+- `text-wrap: balance;`[^text-wrap]で、行の文字数が均等になるように改行します。
+-->
 
-This ensures lines have approximately equal lengths for better aesthetics.
+- `word-break: auto-phrase;` breaks lines at more natural points according to the language.
+- `text-wrap: balance;`[^text-wrap] ensures lines have approximately equal lengths for better aesthetics.
 
-[^text-wrap]: text-wrap https://developer.mozilla.org/ja/docs/Web/CSS/text-wrap
+[^text-wrap]: text-wrap https://developer.mozilla.org/ja/docs/Web/CSS/text-wrap  
+Note: text-wrap: balance; is a proposed CSS property and may not be widely supported yet.
 
 ## 約物の前後の空白の詰め  
 Trimming Spaces Around Punctuation
