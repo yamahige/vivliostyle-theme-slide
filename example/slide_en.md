@@ -50,6 +50,7 @@ When preparing slides for conference presentations, using HTML and CSS offers se
 - Presentations often stem from posted papers <!-- or abstracts -->, allowing the main points to be expressed textually.
 <!-- - ヘッダーやフッターに挿入する項目（「日付」、「研究会名」、など）や書式（「スライド番号/総スライド数」、など）が研究室などで指導されていたりします -->
 - Elements like headers and footers (e.g., “Date,” “Conference Name”) and formats (e.g., “Slide Number/Total Slides”) are often standardized within research labs.
+- Emphasis `em` is displayed in italic type for *English text* while underlining for *Japanese text* (<span lang="ja">*日本語*</span>).
 
 ## <!-- テキストが図を回り込んでくれる -->Text Wrapping Around Images
 
@@ -80,35 +81,37 @@ CSS allows control over automatic line breaks using the `word-break` property[^w
 
 [^word-break]: word-break  https://developer.mozilla.org/ja/docs/Web/CSS/word-break
 
+<!-- `word-break: normal;`という設定では、既定の規則で改行します: -->
+`word-break: normal;` follows default rules:
+
 <div style="word-break: normal;">
 
 ![](figure/figure.svg){style="float: inline-end; inline-size: 17em;"}
-
-<!-- `word-break: normal;`という設定では、既定の規則で改行します: -->
-`word-break: normal;` follows default rules:
 
 <!--
 -	HTML+CSSでは、テキストが図を回り込むのが普通です。
 -	色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。
 -->
 
-- In HTML and CSS, text naturally wraps around images **without** additional effort.
-- <span lang="ja">HTML+CSSでは簡単に、テキストが図を回り込むように**設定できます**。</span>
+- In HTML and CSS, text naturally wraps around images *without* additional effort.
+- <span lang="ja">HTML+CSSでは簡単に、テキストが図を回り込むように*設定できます*。</span>
 
 </div>
-
-<div>
-
-![](figure/figure.svg){style="clear: both; float: inline-end; inline-size: 17em;"}
 
 <!--
 `word-break: auto-phrase;`という設定では、日本語として、より自然な位置で改行します。これは好みが分かれるでしょう:
 -->
 
+<div style="clear: both;"></div>
+
 `word-break: auto-phrase;` breaks lines at more natural points according to the language.
 
-- In HTML and CSS, text naturally wraps around images **without** additional effort.
-- <span lang="ja">HTML+CSSでは簡単に、テキストが図を回り込むように**設定できます**。</span>
+<div>
+
+![](figure/figure.svg){style="clear: both; float: inline-end; inline-size: 17em;"}
+
+- In HTML and CSS, text naturally wraps around images *without* additional effort.
+- <span lang="ja">HTML+CSSでは簡単に、テキストが図を回り込むように*設定できます*。</span>
 
 <!--
 - HTML+CSSでは、テキストが図を回り込むのが普通です。
@@ -116,6 +119,8 @@ CSS allows control over automatic line breaks using the `word-break` property[^w
 -->
 
 </div>
+
+<div style="clear: both;"></div>
 
 <!--
 なお、このスライド全体には、試しに`word-break: auto-phrase;`と設定しています。
@@ -130,7 +135,7 @@ This slide uses `word-break: auto-phrase;` for demonstration.
 - ただし、Markdownを見るとタイトルには改行が入っていません。
 -->
 
-- The title of this slide is so long that it doesn't fit on one line, so it automatically breaks lines. It looks like it **breaks lines where natural**, and it is **two lines of almost the same length**.
+- The title of this slide is so long that it doesn't fit on one line, so it automatically breaks lines. It looks like it *breaks lines where natural*, and it is *two lines of almost the same length*.
 - However, if you look at the Markdown, you will see that the title does not contain line breaks.
 
 <div style="display: flex; flex-direction: column; column-gap: 1em; inline-size: 50%;">
@@ -163,39 +168,71 @@ You can achieve this by using the following setting in CSS.
 [^text-wrap]: text-wrap https://developer.mozilla.org/ja/docs/Web/CSS/text-wrap  
 Note: text-wrap: balance; is a proposed CSS property and may not be widely supported yet.
 
-## 約物の前後の空白の詰め  
-Trimming Spaces Around Punctuation
+## <!-- 約物の前後の空白の詰め -->Trimming Spaces Around CJK Punctuation
 
+<!--
 "「"や"（"といった約物が行頭・行末にきたり連続したりする場合の空白の詰めを,
-`text-spacing-trim`プロパティ[^text-spacing-trim]で制御できます。  
-The text-spacing-trim property controls spacing around punctuation marks:
+`text-spacing-trim`プロパティ[^text-spacing-trim]で制御できます。
+-->
+
+The `text-spacing-trim` property[^text-spacing-trim] controls spacing around CJK punctuation marks:
 
 [^text-spacing-trim]: text-spacing-trim https://developer.mozilla.org/ja/docs/Web/CSS/text-spacing-trim
 
-`text-spacing-trim: normal;`で、行頭の約物は詰めませんが、約物が連続するときに詰めます。これが既定値です。  
- does not trim spaces at line starts but trims consecutive punctuation.
+<!--
+`text-spacing-trim: normal;`で、行頭の約物は詰めませんが、約物が連続するときに詰めます。これが既定値です。
+-->
 
-<div style="text-spacing-trim: normal; font-size: 90%;">
+`text-spacing-trim: normal;` does not trim spaces at line starts but trims consecutive punctuation. This is the initial value.
 
-> - 「色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。」
-> - ヘッダーやフッターに挿入する項目（「日付」、「研究会名」、など）が研究室などで指導されていたりします
+<div style="text-spacing-trim: normal; font-size: 90%;" lang="ja">
+
+> - *「*色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。」
+> - ヘッダーやフッターに挿入する項目*（「*日付」、「研究会名」、など）
 
 </div>
 
+<!--
 `text-spacing-trim: trim-both;`で、行頭行末や連続する約物の空白を詰めます。  
-trims spaces at line starts, ends, and between consecutive punctuation.
+-->
 
-<div style="text-spacing-trim: trim-both; font-size: 90%;">
+`text-spacing-trim: trim-both;` trims spaces at line starts, ends, and between consecutive CJK punctuation.
 
-> - 「色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。」
-> - ヘッダーやフッターに挿入する項目（「日付」、「研究会名」、など）が研究室などで指導されていたりします
+<div style="text-spacing-trim: trim-both; font-size: 90%;" lang="ja">
+
+> - *「*色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。」
+> - ヘッダーやフッターに挿入する項目*（「*日付」、「研究会名」、など）
 
 </div>
 
-スライドはテキストが短く箇条書きも多いので、テキストのまとまりは行頭の揃えで見せるのがよいかもしれません。
+<!--
+`text-spacing-trim: space-all;`と設定すると、約物の空白を詰めません。前の2つと比べてみてください。
+-->
 
+`text-spacing-trim: space-all;` leaves all spaces of CJK punctuation.
+
+<!--
+![text-spacing-trim-space-all.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3930858/5460d863-cd80-4248-a556-9cde17f917ab.png)
+-->
+
+<div style="text-spacing-trim: space-all; font-size: 90%;" lang="ja">
+
+> - *「*色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。」
+> - ヘッダーやフッターに挿入する項目*（「*日付」、「研究会名」、など）
+
+</div>
+
+<!--
+スライドはテキストが短く箇条書きも多いので、テキストのまとまりは行頭の揃えで見せるのがよいかもしれません。
+-->
+
+As the slides have short text and many lists, it is a good idea to show the text cohesion with lines' start alignment.
+
+<!--
 このスライド全体には`text-spacing-trim: trim-both;`と設定されています  
-This slide uses text-spacing-trim: trim-both; for demonstration.
+-->
+
+This slide uses `text-spacing-trim: trim-both;` for demonstration.
 
 <!--
 `text-spacing-trim: space-all;`と設定すると、約物の空白を詰めません。
@@ -208,22 +245,29 @@ This slide uses text-spacing-trim: trim-both; for demonstration.
 </div>
 -->
 
-## ヘッダーとフッター  
-Headers and Footers
+## <!-- ヘッダーとフッター -->Headers and Footers
 
+<!--
 スライド本文のテキストを抜き出して、ヘッダーやフッターに表示できます  
+-->
+
 Text from the slide content can be extracted and displayed in headers and footers:
 
-- 発表のタイトル（`h1`要素）やセクションの見出し（`##`見出し、つまり`h2`要素など）といった既定のタグの付いたテキスト  
-Standard tags like h1 (presentation title) and h2 (section headings) can be used.
+<!--
+- 発表のタイトル（`h1`要素）やセクションの見出し（`##`見出し、つまり`h2`要素など）といった既定のタグの付いたテキスト
 - 日付、発表者、研究会名など既定のタグが付いていないテキスト  
-Non-standard text like dates, authors, and conference names can also be included.
+-->
 
+- Standard tags like `h1` (presentation title) and `h2` (section headings) can be used.
+- Non-standard text like "dates", "authors", and "conference names" can also be included.
+
+<!--
 総スライド数を数えてくれて、その値を自動生成するテキストに含められます  
+-->
+
 The total number of slides can be automatically counted and displayed.
 
-### ヘッダー／フッターはCSSのマージン・ボックス  
-Using CSS Margin Boxes
+### <!-- ヘッダー／フッターはCSSのマージン・ボックス -->Using CSS Margin Boxes
 
 ヘッダーやフッターを表示するには、CSSのマージン・ボックスを利用します。マージン・ボックスは、`@top-left`や`@bottom-right-corner`など、側面とコーナーの合計16個の場所が定義されています<span class="fn">@page https://developer.mozilla.org/ja/docs/Web/CSS/@page</span><span class="fn">CSS Paged Media Module Level 3 - 5. Page-Margin Boxes https://www.w3.org/TR/css-page-3/#margin-boxes</span><span class="fn">CSS - @page - とほほのWWW入門 https://www.tohoho-web.com/css/rule/page.htm</span>。
 
@@ -416,7 +460,7 @@ VFMで次のように書いて、`@bottom-center`マージンに表示したい�
 印を付けるために見出し`##`や`###`に`.conference`クラスを設定して利用しました。
 
 - 印に見出しを利用すると、Markdownエディターのアウトライン表示に印が表示されます
-- このことを覚えておいて、後で説明する[スライド区切りの設定](#breaking-slide)などに**必ず反映**します
+- このことを覚えておいて、後で説明する[スライド区切りの設定](#breaking-slide)などに*必ず反映*します
 
 Markdownエディターでのアウトライン表示にこだわらなければ、その1方式のMarkdownで次のように書いて印を付けられます。
 
@@ -432,7 +476,7 @@ Markdownエディターでのアウトライン表示にこだわらなければ
 
 - Markdownを見ただけでは、フッター中央に何が表示されるか分かりません。何を表示するかはCSS側で決めます。
 - CSSには`.conference`(を直下に持つ`section`の最初の`p`)をフッター中央に表示すると書いてあります。`.conference`はMarkdown（というかHTML）側が決めた印（クラス）ですが、CSS側はこれを前提にしています。
-- このCSSをたまたま見つけてスタイルを気に入った発表者が、発表者名をフッター中央に表示したいと思ったら、**発表者名**に`.conference`クラスを設定するでしょう。
+- このCSSをたまたま見つけてスタイルを気に入った発表者が、発表者名をフッター中央に表示したいと思ったら、*発表者名*に`.conference`クラスを設定するでしょう。
 
 ##### その2方式
 
@@ -480,7 +524,7 @@ This approach allows for flexible and maintainable slide creation using Markdown
 
 「1行だけスライドから溢れてしまったけど、テキストを修正する余裕がない」ことってありますよね。
 
-**見出しより下の部分**を`<div style="font-size: 90%;">…</div>`で囲んで文字サイズを調整します。
+*見出しより下の部分*を`<div style="font-size: 90%;">…</div>`で囲んで文字サイズを調整します。
 
 ```md
 ## 見出し
@@ -535,7 +579,7 @@ A5横を基本に4:3や16:9になるように調整すると、見出しなど�
 ### `##`と`###`でスライドを区切る{#breaking-slide}
 
 - `##`(HTMLの`h2`)に加えて`###`(HTMLの`h3`)くらいまでを既定のスライド区切りにしておきます
-    * CSSとしては、**それらを直下に持つ`section`要素**を1枚のスライドに対応させます
+    * CSSとしては、*それらを直下に持つ`section`要素*を1枚のスライドに対応させます
     * ヘッダー／フッターに表示するため導入した`.conference`クラスなど、便利な印を設定した`h2`や`h3`をスライドの区切りから除外します
 - 任意でスライドを区切るためにの`.break-before-page`クラスと、スライド区切りを止める`.break-before-auto`といったクラスも用意します。VFMが生成する`section`要素に直接スタイル(`style`属性)を設定できないので、CSS側でこのようなお膳立てが必要です。
 
@@ -587,7 +631,7 @@ CSSで次のような配置ができます。先に表示結果を、次にソ�
 
 ### ポイント2
 
-- CSSの競合／相互作用を制御する**お約束**が必要でしょう。
+- CSSの競合／相互作用を制御する*お約束*が必要でしょう。
 - みんなが`!important`を使う世界もどうかと思いますし。
 
 ### ポイント3
@@ -618,7 +662,7 @@ CSSで次のような配置ができます。先に表示結果を、次にソ�
 
 ### ポイント2
 
-- CSSの競合／相互作用を制御する**お約束**が必要でしょう。
+- CSSの競合／相互作用を制御する*お約束*が必要でしょう。
 - みんなが`!important`を使う世界もどうかと思いますし。
 
 ### ポイント3
