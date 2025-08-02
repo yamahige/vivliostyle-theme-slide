@@ -24,6 +24,16 @@ yamahige
 
 ##### 版名{.version-name}
 
+v3
+
+##### 日付{.date}
+
+2025-08-02
+
+#### 版{.version}
+
+##### 版名{.version-name}
+
 v2
 
 ##### 日付{.date}
@@ -215,6 +225,38 @@ h2 {
     @top-right { content: string(chapter-number, first) " " string(chapter, first); }
 }
 ```
+
+### テキストの溢れを省略記号`…`で示す
+
+テキストが溢れて非表示になったとき、溢れて非表示なったテキストがあることを、`text-overflow: ellipsis;`と設定することで、省略記号`…`(U+2026 HORIZONTAL ELLIPSIS)で自動的に示せます。この機能をページ・マージンでも使えます(Vivliostyle.js v2.34.0、Vivliostyle CLI v9.5.0から使えるようになりました)。
+
+<!--
+`@top-left`マージンに表示する発表タイトルが長すぎる場合、行を折り返すのもおかしいし、右の`@top-right`マージン側に溢れるのもおかしいので、収まらなかった分は切ることにしたとします。このとき、溢れて非表示なったテキストがあることを、省略記号`…`で示せるのです。
+-->
+
+次のように、`@top-left`マージンに表示するタイトルが長い場合…
+
+```md
+# Markdownで書いてCSSでスタイルを指定してVivliostyleでスライドを組んでプレゼン #
+```
+
+溢れたテキストは折り返さずに切り取る設定にしたうえで、「溢れて切り取られた場合は省略記号を表示する」設定にすると…
+
+```css
+@top-left {
+  content: string(string-title);
+  max-width: 50%;
+  overflow: hidden; /* 溢れたテキストを切り取る */
+  white-space: nowrap; /* 折り返さない */
+  text-overflow: ellipsis; /* 溢れて切り取られたら省略記号を表示する */
+}
+```
+
+![](figure/ellipsis.png)
+
+長いタイトルが「Vivliostyleで」で切れて、その後に`…`が表示されます:
+
+Zoomや発表会場に途中から入った参加者にとって、今どの発表の最中なのかが分かるとありがたいですよね。その場合、他の発表と区別できればよいので、このように発表タイトルが途中で切り取られてても大丈夫です。
 
 ### 日付、発表者、研究会名など - その1
 
@@ -461,7 +503,7 @@ section:has(> h2.break-before-auto, > h3.break-before-auto) {
 }
 ```
 
-### アウトライン番号{.break-before-auto}
+### アウトライン番号{.break-before-page}
 
 アウトライン(`section`構造)に、「1.」、「1.1」などと番号が振ってあると、プレゼンのときに今どこの話をしてるのか、聞き手が理解する助けになります
 
